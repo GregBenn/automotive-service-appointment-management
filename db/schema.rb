@@ -24,27 +24,27 @@ ActiveRecord::Schema.define(version: 2018_09_07_185126) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.integer "phone_number"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.integer "phone_number", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "vehicles", force: :cascade do |t|
-    t.integer "year"
-    t.string "make"
-    t.string "model"
-    t.integer "mileage"
-    t.integer "customer_id"
+    t.integer "year", null: false
+    t.string "make", null: false
+    t.string "model", null: false
+    t.integer "mileage", null: false
+    t.integer "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_vehicles_on_customer_id"
