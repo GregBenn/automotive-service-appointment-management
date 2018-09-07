@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'sessions/create'
+  get 'sessions/destroy'
+  get 'sessions/new'
+  get 'static_pages/home'
   resources :appointments
   resources :vehicles
   resources :customers
