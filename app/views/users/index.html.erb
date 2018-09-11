@@ -1,6 +1,7 @@
+<h3>All Users</h3>
+<h6>Click email to go to profile page</h6>
 <% @users.each do |user| %>
 <ul>
-  <li> <%= user.name %> </li>
-  <li> <%= link_to user.email user_path(user) %> </li>
+  <li><%= user.name %>: <%= link_to user.email, user_path(user) %> </li>
 <% end %>
 </ul>
