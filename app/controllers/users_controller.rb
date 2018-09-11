@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :require_logged_in, only: %i[index show edit update]
-  before_action :find_user, only: %i[index show edit update]
+  before_action :find_user, only: %i[show edit update]
 
   def new
     @user = User.new
@@ -34,7 +34,10 @@ class UsersController < ApplicationController
 private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name,
+                                 :email,
+                                 :password,
+                                 :password_confirmation)
   end
 
   def find_user
