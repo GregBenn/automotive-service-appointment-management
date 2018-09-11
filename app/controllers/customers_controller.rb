@@ -15,7 +15,6 @@ class CustomersController < ApplicationController
   def create
     customer = Customer.new(customer_params)
     if customer.save
-      session[:customer_id] = customer.id
       redirect_to customer_path(customer)
     else
       redirect_to new_customer_path
@@ -35,8 +34,8 @@ private
 
   def customer_params
     params.require(:customer).permit(:name,
-                                 :email,
-                                 :phone_number)
+                                     :email,
+                                     :phone_number)
   end
 
   def find_customer
