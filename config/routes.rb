@@ -5,12 +5,11 @@ Rails.application.routes.draw do
   post "/sessions", to: "sessions#create", as: "sessions"
   delete "/sessions/", to: "sessions#destroy"
 
-  get "static_pages/home"
+  root "static_pages#home"
 
   resources :users
   resources :customers do
     resources :vehicles
   end
   resources :appointments
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
