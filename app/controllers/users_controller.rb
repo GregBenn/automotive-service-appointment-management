@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[show edit update]
+  before_action :require_logged_in, only: %i[index show edit update]
+  before_action :find_user, only: %i[index show edit update]
 
   def new
     @user = User.new
