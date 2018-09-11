@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :find_user, only: %i[show edit update]
+
   def new
     @user = User.new
   end
@@ -19,16 +21,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @user = User.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user)
   end
@@ -37,5 +34,9 @@ private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def find_user
+    @user = User.find(params[:id])
   end
 end
