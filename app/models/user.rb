@@ -5,4 +5,5 @@ class User < ApplicationRecord
   has_many :appointments
   has_many :vehicles, through: :appointments
   # has_many :customers, through: :vehicles
+  validates_uniqueness_of :email
 end
