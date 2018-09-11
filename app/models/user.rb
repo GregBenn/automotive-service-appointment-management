@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :vehicles, through: :appointments
   # has_many :customers, through: :vehicles
   validates_uniqueness_of :email
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 end
