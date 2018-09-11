@@ -1,0 +1,9 @@
+<h3>All Customers</h3>
+<h6>Click on name to go to profile page</h6>
+<% @customers.each do |customer| %>
+<ul>
+  <li><%= link_to customer.name, customer_path(customer) %>: <%= customer.phone_number %></li>
+<% end %>
+</ul>
+
+<!-- need to add vehiles that belong to the customer -->

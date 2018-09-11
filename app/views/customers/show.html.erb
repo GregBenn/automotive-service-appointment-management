@@ -1,0 +1,9 @@
+ <h3><%= "#{@customer.name}'s Profile" %></h3>
+
+<p>Name: <%= @customer.name %></p>
+<p>Email: <%= @customer.phone_number %></p>
+
+<%= link_to "Edit Customer's Profile", edit_customer_path(@customer) %>
+
+<!-- display all of the vehicles associated with the customer -->
+<!-- itterate through and list all vehicle -->
