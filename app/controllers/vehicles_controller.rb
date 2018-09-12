@@ -2,7 +2,7 @@
 
 class VehiclesController < ApplicationController
   before_action :find_vehicle, only: %i[show edit update]
-  before_action :find_current_customer, only: %i[new edit]
+  before_action :find_current_customer, only: %i[new edit show]
 
   def new
     find_current_customer
