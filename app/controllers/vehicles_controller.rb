@@ -13,7 +13,6 @@ class VehiclesController < ApplicationController
   end
 
   def create
-    # binding.pry
     vehicle = Vehicle.new(vehicle_params)
     if vehicle.save
       redirect_to customer_path(current_customer_id)
@@ -24,7 +23,7 @@ class VehiclesController < ApplicationController
   end
 
   def show
-
+    find_vehicle
   end
 
   def edit; end
@@ -41,7 +40,8 @@ private
       :year,
       :make,
       :model,
-      :mileage).merge(customer_id: current_customer_id)
+      :mileage
+    ).merge(customer_id: current_customer_id)
   end
 
   def find_vehicle
