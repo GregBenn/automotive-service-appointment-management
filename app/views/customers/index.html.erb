@@ -3,7 +3,7 @@
 <% @customers.each do |customer| %>
 <ul>
   <li><%= link_to customer.name, customer_path(customer) %>: <%= customer.phone_number %></li>
-  <ul><% @customer.vehicles.each do |vehicle| %>
+  <ul><% customer.vehicles.each do |vehicle| %>
   <li><%= vehicle.vehicle_description %></li>
   <% end %>
   </ul>
