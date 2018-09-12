@@ -1,7 +1,7 @@
 <%= form_for [@customer, @vehicle, @appointment] do |f| %>
 
   <%= f.label :scheduled_for %>:
-  <%= f.date_field :scheduled_for %><br />
+  <%= f.date_field :scheduled_for, min: Date.today %><br />
 
   <%= f.label :status %>:
   <%= f.text_field :status %><br />
@@ -12,5 +12,4 @@
 <% end %>
 
 
-<!-- I want to be able to select a date -->
 <!-- I want to be able to select a vehicle for the customer -->
