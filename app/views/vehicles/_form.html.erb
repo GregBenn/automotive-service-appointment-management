@@ -1,0 +1,16 @@
+<%= form_for [@customer, @vehicle] do |f| %>
+
+  <%= f.label :year %>:
+  <%= f.text_field :year %><br />
+
+  <%= f.label :make %>:
+  <%= f.text_field :make %><br />
+
+  <%= f.label :model %>:
+  <%= f.text_field :model %><br />
+
+  <%= f.label :mileage %>:
+  <%= f.text_field :mileage %><br />
+
+  <%= f.submit %>
+<% end %>
