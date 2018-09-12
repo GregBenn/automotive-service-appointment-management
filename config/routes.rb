@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :customers do
-    resources :vehicles
+    resources :vehicles do
+      resources :appointments
+    end
   end
-  resources :appointments
 end
