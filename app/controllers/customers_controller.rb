@@ -33,12 +33,17 @@ class CustomersController < ApplicationController
 private
 
   def customer_params
-    params.require(:customer).permit(:name,
-                                     :email,
-                                     :phone_number)
+    params.require(:customer).permit(
+      :name,
+      :email
+    ).merge(phone_number: format_phone_number)
   end
 
   def find_customer
     @customer = Customer.find(params[:id])
+  end
+
+  def format_phone_number
+    params[:customer][:phone_number].to_s.gsub(/\D/, "").to_i
   end
 end
