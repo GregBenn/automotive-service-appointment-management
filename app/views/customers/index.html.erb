@@ -3,7 +3,9 @@
 <% @customers.each do |customer| %>
 <ul>
   <li><%= link_to customer.name, customer_path(customer) %>: <%= customer.phone_number %></li>
-<% end %>
+  <ul><% @customer.vehicles.each do |vehicle| %>
+  <li><%= vehicle.vehicle_description %></li>
+  <% end %>
+  </ul>
 </ul>
-
-<!-- need to add vehiles that belong to the customer -->
+<% end %>

@@ -11,5 +11,5 @@ Email: <%= @customer.phone_number %>
 <br>
 
 <% @customer.vehicles.each do |vehicle| %>
-<%= link_to "#{@vehicle.year} #{@vehicle.make} #{@vehicle.model}", customer_vehicle_path(@customer, vehicle) %>
+<li><%= link_to "#{vehicle.year} #{vehicle.make} #{vehicle.model}", customer_vehicle_path(@customer, vehicle) %></li>
 <% end %>
