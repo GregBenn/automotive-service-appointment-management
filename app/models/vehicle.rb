@@ -6,6 +6,6 @@ class Vehicle < ApplicationRecord
   has_many :users, through: :appointments
 
   def vehicle_description
-    "#{vehicle.year} #{vehicle.make} #{vehicle.model}"
+    "#{year} #{make} #{model}"
   end
 end
