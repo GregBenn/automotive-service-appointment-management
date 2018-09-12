@@ -1,10 +1,12 @@
-<%= form_for appointment do |f| %>
+<%= form_for [@customer, @vehicle, @appointment] do |f| %>
 
   <%= f.label :scheduled_for %>:
   <%= f.date_field :scheduled_for %><br />
 
   <%= f.label :status %>:
   <%= f.text_field :status %><br />
+
+  <%#= f.options_for_select(:status, ["open", "closed", "pending"], :id, :name %>
 
   <%= f.submit %>
 <% end %>
