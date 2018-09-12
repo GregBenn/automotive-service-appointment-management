@@ -2,9 +2,10 @@
 
 class VehiclesController < ApplicationController
   before_action :find_vehicle, only: %i[show edit update]
+  before_action :find_current_customer, only: %i[new edit]
 
   def new
-    @customer = Customer.find_by(id: params[:customer_id])
+    find_current_customer
     @vehicle = Vehicle.new
   end
 
@@ -17,20 +18,17 @@ class VehiclesController < ApplicationController
     if vehicle.save
       redirect_to customer_path(current_customer_id)
     else
-
       redirect_to new_customer_vehicle_path
     end
   end
 
-  def show
-    find_vehicle
-  end
+  def show; end
 
   def edit; end
 
   def update
     @vehicle.update(vehicle_params)
-    redirect_to vehicle_path(@vehicle)
+    redirect_to customer_path(current_customer_id)
   end
 
 private
@@ -50,5 +48,9 @@ private
 
   def current_customer_id
     params[:customer_id]
+  end
+
+  def find_current_customer
+    @customer = Customer.find_by(id: current_customer_id)
   end
 end
