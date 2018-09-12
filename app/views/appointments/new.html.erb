@@ -1,0 +1,6 @@
+Schedule an Appointment
+
+Customer: <%= @customer.name %>
+Vehicle: <%= @customer.vehicle.vehicle_description %>
+
+<%= render partial: "form", locals: {appointment: @appointment} %>
