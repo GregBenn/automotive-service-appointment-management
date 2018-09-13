@@ -1,5 +1,6 @@
 <h3>All Customers</h3>
-<h6>Click on name to go to profile page</h6>
+<h6>Click on name to go to profile page or on the link below to add a new customer</h6>
+<h5><%= link_to "Add a New Customer", new_customer_path %></h5>
 <% @customers.each do |customer| %>
 <ul>
   <li><%= link_to customer.name, customer_path(customer) %>: <%= customer.phone_number %></li>
