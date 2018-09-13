@@ -1,6 +1,23 @@
-<h3><%= "#{@user.name}'s Profile" %></h3>
+<h2><%= "#{@user.name}'s Home Page" %></h2>
 
-<p>Name: <%= @user.name %></p>
-<p>Email: <%= @user.email %></p>
+<%= link_to "Edit User Profile", edit_user_path(@user) %>
+<br>
+<!-- show pending appointments -->
+<!-- show open appointments -->
+<!-- show closed appointments -->
 
-<%= link_to "Edit Profile", edit_user_path(@user) %>
+<!-- appointment.vehicle.vehicle_desctiption -->
+<!-- appointment.vehicle.customer.name -->
+<!-- appointment.status -->
+<%#= binding.pry %>
+
+<%#= @user.appointments.all[0].vehicle.customer %>
+<ul>All appointments scheduled by <%= @user.name %>
+  <% @user.appointments.each do |appointment| %>
+    <ul> Scheduled for: <%= appointment.scheduled_for %></ul>
+    <ul><%= appointment.vehicle.customer.name %> - <%= appointment.vehicle.vehicle_description %></ul>
+    <br>
+  <% end %>
+  *click to edit appointment
+</ul>
+
