@@ -11,7 +11,7 @@
 
   <body>
     <div>
-      <% if !logged_in? %>
+      <% if logged_in? %>
         <%= link_to "Home", user_path(current_user) %>
         <%= link_to "Customers", customers_path %>
         <%= link_to "Log out", logout_path, method: "delete" %>

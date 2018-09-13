@@ -3,7 +3,8 @@
 Rails.application.routes.draw do
   get "/signin", to: "sessions#new", as: "signin"
   post "/sessions", to: "sessions#create", as: "sessions"
-  delete "/sessions/", to: "sessions#destroy"
+  delete "/sessions/", to: "sessions#destroy", as: "logout"
+
 
   root "static_pages#home"
 
