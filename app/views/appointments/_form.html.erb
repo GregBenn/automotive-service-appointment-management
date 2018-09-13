@@ -1,3 +1,8 @@
+Customer: <%= @customer.name %>
+<br>
+Vehicle: <%= @vehicle.vehicle_description %>
+<br>
+
 <%= form_for [@customer, @vehicle, @appointment] do |f| %>
 
   <%= f.label :scheduled_for %>:

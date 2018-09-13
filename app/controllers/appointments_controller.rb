@@ -3,6 +3,7 @@
 class AppointmentsController < ApplicationController
   before_action :current_user, only: %i[create edit update]
   before_action :find_current_customer, :find_vehicle, only: %i[new edit show]
+  before_action :find_appointment, only: %i[show edit update]
 
   def new
     @appointment = Appointment.new
@@ -52,5 +53,9 @@ private
 
   def find_current_customer
     @customer = Customer.find_by(id: params[:customer_id])
+  end
+
+  def find_appointment
+    @appointment = Appointment.find_by(id: params[:id])
   end
 end
