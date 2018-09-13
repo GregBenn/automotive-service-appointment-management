@@ -2,22 +2,45 @@
 
 <%= link_to "Edit User Profile", edit_user_path(@user) %>
 <br>
-<!-- show pending appointments -->
-<!-- show open appointments -->
-<!-- show closed appointments -->
 
-<!-- appointment.vehicle.vehicle_desctiption -->
-<!-- appointment.vehicle.customer.name -->
-<!-- appointment.status -->
-<%#= binding.pry %>
+<!-- add a checkbox to conditionally show by which status is selected -->
 
-<%#= @user.appointments.all[0].vehicle.customer %>
-<ul>All appointments scheduled by <%= @user.name %>
-  <% @user.appointments.each do |appointment| %>
+<ul>All Appointments Scheduled by <%= @user.name %>
+  <ul>Open Appointments:
+  <% @user.appointments.open.each do |appointment| %>
     <ul> Scheduled for: <%= appointment.scheduled_for %></ul>
     <ul><%= appointment.vehicle.customer.name %> - <%= appointment.vehicle.vehicle_description %></ul>
+    <ul><%#= link_to("click to edit appointment", edit_customer_vehicle_appointment_path(appointment)) %></ul>
     <br>
   <% end %>
-  *click to edit appointment
+  </ul>
+
+  <ul>Pending Appointments:
+  <% @user.appointments.pending.each do |appointment| %>
+    <ul> Scheduled for: <%= appointment.scheduled_for %></ul>
+    <ul><%= appointment.vehicle.customer.name %> - <%= appointment.vehicle.vehicle_description %></ul>
+    <ul><%#= link_to("click to edit appointment", edit_customer_vehicle_appointment_path(appointment)) %></ul>
+    <br>
+  <% end %>
+  </ul>
+
+  <ul>Closed Appointments:
+  <% @user.appointments.closed.each do |appointment| %>
+    <ul> Scheduled for: <%= appointment.scheduled_for %></ul>
+    <ul><%= appointment.vehicle.customer.name %> - <%= appointment.vehicle.vehicle_description %></ul>
+    <ul><%#= link_to("click to edit appointment", edit_customer_vehicle_appointment_path(appointment)) %></ul>
+    <br>
+  <% end %>
+  </ul>
+
+  <ul>Cancelled Appointments:
+  <% @user.appointments.cancelled.each do |appointment| %>
+    <ul> Scheduled for: <%= appointment.scheduled_for %></ul>
+    <ul><%= appointment.vehicle.customer.name %> - <%= appointment.vehicle.vehicle_description %></ul>
+    <ul><%#= link_to("click to edit appointment", edit_customer_vehicle_appointment_path(appointment)) %></ul>
+    <br>
+  <% end %>
+  </ul>
+  <!-- *click to edit appointment -->
 </ul>
 
