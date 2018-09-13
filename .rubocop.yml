@@ -10,6 +10,7 @@ AllCops:
     - 'config/**'
     - 'config/**/*'
     - 'bin/**'
+    - 'db/seeds.rb'
 
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
