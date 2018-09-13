@@ -5,42 +5,54 @@
 
 <!-- add a checkbox to conditionally show by which status is selected -->
 
+<%= form_for(@user) do |f| %>
+  <%= f.select(:status, [["All", "all"], ["Open", "open"], ["Closed", "closed"], ["Pending", "pending"]], selected: @status_filter) %>
+<% end %>
+
 <ul>All Appointments Scheduled by <%= @user.name %>
-  <ul>Open Appointments:
-  <% @user.appointments.open.each do |appointment| %>
-    <ul> Scheduled for: <%= appointment.scheduled_for %></ul>
-    <ul><%= appointment.vehicle.customer.name %> - <%= appointment.vehicle.vehicle_description %></ul>
-    <ul><%#= link_to("click to edit appointment", edit_customer_vehicle_appointment_path(appointment)) %></ul>
-    <br>
+  <% if ["open", "all"].include?(@status_filter) %>
+    <ul>Open Appointments:
+    <% @user.appointments.open.each do |appointment| %>
+      <ul> Scheduled for: <%= appointment.scheduled_for %></ul>
+      <ul><%= appointment.vehicle.customer.name %> - <%= appointment.vehicle.vehicle_description %></ul>
+      <ul><%#= link_to("click to edit appointment", edit_customer_vehicle_appointment_path(appointment)) %></ul>
+      <br>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
 
-  <ul>Pending Appointments:
-  <% @user.appointments.pending.each do |appointment| %>
-    <ul> Scheduled for: <%= appointment.scheduled_for %></ul>
-    <ul><%= appointment.vehicle.customer.name %> - <%= appointment.vehicle.vehicle_description %></ul>
-    <ul><%#= link_to("click to edit appointment", edit_customer_vehicle_appointment_path(appointment)) %></ul>
-    <br>
+  <% if ["pending", "all"].include?(@status_filter) %>
+    <ul>Pending Appointments:
+    <% @user.appointments.pending.each do |appointment| %>
+      <ul> Scheduled for: <%= appointment.scheduled_for %></ul>
+      <ul><%= appointment.vehicle.customer.name %> - <%= appointment.vehicle.vehicle_description %></ul>
+      <ul><%#= link_to("click to edit appointment", edit_customer_vehicle_appointment_path(appointment)) %></ul>
+      <br>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
 
-  <ul>Closed Appointments:
-  <% @user.appointments.closed.each do |appointment| %>
-    <ul> Scheduled for: <%= appointment.scheduled_for %></ul>
-    <ul><%= appointment.vehicle.customer.name %> - <%= appointment.vehicle.vehicle_description %></ul>
-    <ul><%#= link_to("click to edit appointment", edit_customer_vehicle_appointment_path(appointment)) %></ul>
-    <br>
+  <% if ["closed", "all"].include?(@status_filter) %>
+    <ul>Closed Appointments:
+    <% @user.appointments.closed.each do |appointment| %>
+      <ul> Scheduled for: <%= appointment.scheduled_for %></ul>
+      <ul><%= appointment.vehicle.customer.name %> - <%= appointment.vehicle.vehicle_description %></ul>
+      <ul><%#= link_to("click to edit appointment", edit_customer_vehicle_appointment_path(appointment)) %></ul>
+      <br>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
 
-  <ul>Cancelled Appointments:
-  <% @user.appointments.cancelled.each do |appointment| %>
-    <ul> Scheduled for: <%= appointment.scheduled_for %></ul>
-    <ul><%= appointment.vehicle.customer.name %> - <%= appointment.vehicle.vehicle_description %></ul>
-    <ul><%#= link_to("click to edit appointment", edit_customer_vehicle_appointment_path(appointment)) %></ul>
-    <br>
+  <% if ["cancelled", "all"].include?(@status_filter) %>
+    <ul>Cancelled Appointments:
+    <% @user.appointments.cancelled.each do |appointment| %>
+      <ul> Scheduled for: <%= appointment.scheduled_for %></ul>
+      <ul><%= appointment.vehicle.customer.name %> - <%= appointment.vehicle.vehicle_description %></ul>
+      <ul><%#= link_to("click to edit appointment", edit_customer_vehicle_appointment_path(appointment)) %></ul>
+      <br>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
   <!-- *click to edit appointment -->
 </ul>
 

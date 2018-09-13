@@ -13,4 +13,11 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery3
 //= require_tree .
+
+$(document).ready(function() {
+  $("#user_status").change(function(event) {
+    window.location = window.location.pathname + "?status=" + event.currentTarget.value;
+  });
+});

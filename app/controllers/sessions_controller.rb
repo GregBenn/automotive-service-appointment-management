@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+  before_action :find_user, only: %i[create]
+
   def create
-    user = User.find_by(email: params[:user][:email])
-    if user&.authenticate(params[:user][:password])
-      assign_session
-      redirect_to user_path(user)
+    if @user&.authenticate(params[:user][:password])
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
     else
       message
       redirect_to signin_path
@@ -25,7 +26,7 @@ class SessionsController < ApplicationController
     flash[:alert] = "Invalid name or password.  Please try again."
   end
 
-  def assign_session
-    session[:user_id] = user.id
+  def find_user
+    @user = User.find_by(email: params[:user][:email])
   end
 end

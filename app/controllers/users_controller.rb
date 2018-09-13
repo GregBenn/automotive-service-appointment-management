@@ -22,7 +22,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @status_filter = params[:status] || "all"
+  end
 
   def edit; end
 

@@ -9,12 +9,9 @@ Vehicle: <%= @vehicle.vehicle_description %>
   <%= f.date_field :scheduled_for, min: Date.today %><br />
 
   <%= f.label :status %>:
-  <%= f.text_field :status %><br />
+  <%#= f.text_field :status %>
 
-  <%#= f.options_for_select(:status, ["open", "closed", "pending"], :id, :name %>
-
+  <%= f.select(:status, [["Open", "open"], ["Closed", "closed"], ["Pending", "pending"]])%>
+<br />
   <%= f.submit %>
 <% end %>
-
-
-<!-- I want to be able to select a vehicle for the customer -->
