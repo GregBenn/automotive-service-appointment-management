@@ -4,10 +4,10 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:user][:email])
     if user&.authenticate(params[:user][:password])
-      session[:user_id] = user.id
+      assign_session
       redirect_to user_path(user)
     else
-      flash[:alert] = message
+      message
       redirect_to signin_path
     end
   end
@@ -22,6 +22,10 @@ class SessionsController < ApplicationController
   end
 
   def message
-    "Invalid name or password.  Please try again."
+    flash[:alert] = "Invalid name or password.  Please try again."
+  end
+
+  def assign_session
+    session[:user_id] = user.id
   end
 end
