@@ -8,6 +8,8 @@ class Appointment < ApplicationRecord
   scope :closed, -> { where(status: "closed") }
   scope :cancelled, -> { where(status: "cancelled") }
 
+  validates :scheduled_for, presence: true
+  validates :status, presence: true
 
   # def self.pending
   #   where(status: "pending")
