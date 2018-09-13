@@ -18,6 +18,7 @@ class VehiclesController < ApplicationController
     if vehicle.save
       redirect_to customer_path(current_customer_id)
     else
+      flash[:alert] = message
       redirect_to new_customer_vehicle_path
     end
   end
@@ -52,5 +53,9 @@ private
 
   def find_current_customer
     @customer = Customer.find_by(id: current_customer_id)
+  end
+
+  def message
+    "Must have a valid year, make, model, and mileage. Please submit again."
   end
 end

@@ -49,6 +49,6 @@ private
   end
 
   def message
-    "Must have a name, email, and phone number. Please try again."
+    "Must have a name, email, and phone number. Please submit again."
   end
 end

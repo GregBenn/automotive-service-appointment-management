@@ -14,6 +14,7 @@ class AppointmentsController < ApplicationController
     if appointment.save
       redirect_to customer_path(current_customer_id)
     else
+      flash[:alert] = message
       redirect_to new_customer_vehicle_path
     end
   end
@@ -57,5 +58,9 @@ private
 
   def find_appointment
     @appointment = Appointment.find_by(id: params[:id])
+  end
+
+  def message
+    "Must valid have a date and status. Please submit again."
   end
 end
