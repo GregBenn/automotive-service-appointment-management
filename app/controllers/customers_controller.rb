@@ -17,6 +17,7 @@ class CustomersController < ApplicationController
     if customer.save
       redirect_to customer_path(customer)
     else
+      flash[:alert] = message
       redirect_to new_customer_path
     end
   end
@@ -45,5 +46,9 @@ private
 
   def format_phone_number
     params[:customer][:phone_number].to_s.gsub(/\D/, "").to_i
+  end
+
+  def message
+    "Must have a name, email, and phone number. Please try again."
   end
 end

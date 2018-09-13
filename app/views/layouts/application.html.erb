@@ -22,5 +22,12 @@
     </div>
 
     <%= yield %>
+
+    <div class="flash">
+      <% flash.each do |key, value| %>
+        <p><b><div class="alert alert-<%= key %>"><%= value %></p></b></div>
+      <% end %>
+    </div>
+
   </body>
 </html>
