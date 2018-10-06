@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Vehicle, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "is valid" do
+    expect(build(:vehicle)).to be_valid
+  end
+
+  it 'should belong to customer' do
+    t = Vehicle.reflect_on_association(:customer)
+    expect(t.macro).to eq(:belongs_to)
+  end
 end
