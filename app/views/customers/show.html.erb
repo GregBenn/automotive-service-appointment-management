@@ -4,12 +4,22 @@ Name: <%= @customer.name %>
 <br>
 Email: <%= @customer.phone_number %>
 <br>
-
 <%= link_to "Edit Customer's Profile", edit_customer_path(@customer) %>
 <br>
 <%= link_to "Add New Vehicle", new_customer_vehicle_path(@customer, @vehicle) %>
 <br>
+<br>
+<button class="js-more" data-id="<%= @customer.id %>">Show customer's vehicles</button>
 
-<% @customer.vehicles.each do |vehicle| %>
-<li><%= link_to vehicle.vehicle_description, customer_vehicle_path(@customer, vehicle) %></li>
-<% end %>
+<div id="vehicle_display-<%= @customer.id %>"></div>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    var id = $(this).data("id")
+    $.get("/customers/" + id + "/vehicle_display", function(data) {
+      $("#vehicle_display-" + id).html(data)
+    })
+  })
+})
+</script>

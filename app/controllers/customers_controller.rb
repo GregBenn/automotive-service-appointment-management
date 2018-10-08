@@ -31,6 +31,11 @@ class CustomersController < ApplicationController
     redirect_to customer_path(@customer)
   end
 
+  def vehicle_display
+    find_customer
+    render inline: vehicle_display_erb
+  end
+
 private
 
   def customer_params
@@ -50,5 +55,15 @@ private
 
   def message
     "Must have a name, email, and phone number. Please submit again."
+  end
+
+  def vehicle_display_erb
+    <<-ERB
+    <% @customer.vehicles.each do |vehicle| %>
+    <li>
+    <%= link_to vehicle.vehicle_description, customer_vehicle_path(@customer, vehicle) %>
+    </li>
+    <% end %>
+    ERB
   end
 end
