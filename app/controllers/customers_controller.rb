@@ -22,7 +22,14 @@ class CustomersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @customer = Customer.find(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @customer.to_json(only: [:name, :email, :phone_number, :id],
+                              include: [vehicles: { only: [:year, :make, :model]}]) }
+    end
+  end
 
   def edit; end
 
@@ -34,6 +41,11 @@ class CustomersController < ApplicationController
   def vehicle_display
     find_customer
     render inline: vehicle_display_erb
+  end
+
+  def customer_data
+    find_customer
+    render json: @customer.to_json(include: :vehicles)
   end
 
 private
@@ -60,9 +72,9 @@ private
   def vehicle_display_erb
     <<-ERB
     <% @customer.vehicles.each do |vehicle| %>
-    <li>
+    <ul>
     <%= link_to vehicle.vehicle_description, customer_vehicle_path(@customer, vehicle) %>
-    </li>
+    </ul>
     <% end %>
     ERB
   end

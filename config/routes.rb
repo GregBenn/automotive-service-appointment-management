@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete "/sessions/", to: "sessions#destroy", as: "logout"
 
   get "/customers/:id/vehicle_display", to: "customers#vehicle_display"
+  get "customers/:id/customer_data", to: "customers#customer_data"
 
   root "static_pages#home"
 
