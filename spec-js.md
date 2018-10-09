@@ -1,11 +1,11 @@
 # Specifications for the Rails with jQuery Assessment
 
 Specs:
-- [ ] Use jQuery for implementing new requirements
+- [x] Use jQuery for implementing new requirements
 
-- [ ] Include a show resource rendered using jQuery and JSON backend.
+- [x] Include a show resource rendered using jQuery and JSON backend.
 
-- [ ] Include an index resource rendered using jQuery and JSON backend.
+- [x] Include an index resource rendered using jQuery and JSON backend.
 
 - [ ] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
 
@@ -15,7 +15,7 @@ Specs:
 
 - [ ] At least one of the js model objects must have at least one method added by your code to the prototype.
 
-- [ ] Contains at least 2 model `rspec` test files and a controller test file that reasonably tests your public api.
+- [x] Contains at least 2 model `rspec` test files and a controller test file that reasonably tests your public api.
 
 
 Confirm
