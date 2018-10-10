@@ -1,21 +1,23 @@
 <br>
 <a href="#" class="js-next" data-id="<%= @customer.id %>">Next Customer</a>
-<h3 class="customerName"><%= @customer.name %>'s Profile</h3>
+<h3><span class="customerName"><%= @customer.name %>'s Profile</h3>
 <%= link_to "Edit Customer's Profile", edit_customer_path(@customer) %>
 <br>
 <%= link_to "Add New Vehicle", new_customer_vehicle_path(@customer, @vehicle) %>
-<p class="customerName">Name: <%= @customer.name %></p>
-<p class="customerEmail">Email: <%= @customer.email %></p>
-<p class="customerPhoneNumber">Phone Number: <%= @customer.phone_number %></p>
+<p>Name: <span class="customerName"><%= @customer.name %></span></p>
+<p>Email:  <span class="customerEmail"><%= @customer.email %></p>
+<p>Phone Number:  <span class="customerPhoneNumber"><%= @customer.phone_number %></p>
 <div id="vehicle_display-<%= @customer.id %>"></div>
 <button class="js-more" data-id="<%= @customer.id %>">Show customer's vehicles</button>
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-next").on("click", function() {
-     event.preventDefault()
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1
+    event.preventDefault()
+    const nextId = parseInt($(".js-next").attr("data-id")) + 1
     $.get("/customers/" + nextId + ".json", function(data) {
+      // const customer = new CustomerPresenter(data)
+      // customer.append_info
       $(".customerName").text(data["name"])
       $(".customerEmail").text(data["email"])
       $(".customerPhoneNumber").text(data["phone_number"])
@@ -29,7 +31,7 @@ $(function () {
 $(function () {
   $(".js-more").on('click', function() {
      // event.preventDefault();
-    var id = $(this).data("id")
+    const id = $(this).data("id")
     $.get("/customers/" + id + "/vehicle_display", function(data) {
       $("#vehicle_display-" + id).html(data)
     })
