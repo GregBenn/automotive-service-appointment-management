@@ -4,14 +4,19 @@ Vehicle: <%= @vehicle.vehicle_description %>
 <br>
 
 <%= form_for [@customer, @vehicle, @appointment] do |f| %>
+  <div class="field">
+    <%= f.label :scheduled_for %>:
+    <%= f.date_field :scheduled_for, min: Date.today %>
+  </div>
 
-  <%= f.label :scheduled_for %>:
-  <%= f.date_field :scheduled_for, min: Date.today %><br />
 
-  <%= f.label :status %>:
-  <%#= f.text_field :status %>
+  <div class="field">
+    <%= f.label :status %>:
+    <%= f.select(:status, [["Open", "open"], ["Closed", "closed"], ["Pending", "pending"]])%>
+  </div>
+  <br />
 
-  <%= f.select(:status, [["Open", "open"], ["Closed", "closed"], ["Pending", "pending"]])%>
-<br />
-  <%= f.submit %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>
