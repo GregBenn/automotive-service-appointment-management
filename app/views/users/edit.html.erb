@@ -1,4 +1,4 @@
- <h2>Edit <span id="editUserName"><%= @user.name %></span>'s User Profile</h2>
+ <h2>Edit <span id="editUserHeaderName"><%= @user.name %></span>'s User Profile</h2>
 
 <div id="editUserResult">
   <p>
@@ -25,9 +25,10 @@
       const posting = $.post(`/users/${id}`, values)
 
       posting.done(function(data) {
-        const post = data
-        $("#editUserName").text(post["name"])
-        $("#editUserEmail").text(post["email"])
+        const user = data
+        $("#editUserHeaderName").text(user["name"])
+        $("#editUserName").text(user["name"])
+        $("#editUserEmail").text(user["email"])
       })
     })
   })
