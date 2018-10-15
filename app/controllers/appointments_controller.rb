@@ -6,13 +6,16 @@ class AppointmentsController < ApplicationController
   before_action :find_appointment, only: %i[show edit update]
 
   def new
+    current_vehicle_id
+    current_customer_id
     @appointment = Appointment.new
   end
 
   def create
     appointment = Appointment.new(appointment_params)
     if appointment.save
-      redirect_to customer_path(current_customer_id)
+      # redirect_to customer_path(current_customer_id)
+      render json: @appointment, status: 201
     else
       flash[:alert] = message
       redirect_to new_customer_vehicle_path
