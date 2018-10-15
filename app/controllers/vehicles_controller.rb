@@ -29,7 +29,8 @@ class VehiclesController < ApplicationController
 
   def update
     @vehicle.update(vehicle_params)
-    redirect_to customer_path(current_customer_id)
+    # redirect_to customer_path(current_customer_id)
+    render json: @vehicle, status: 201
   end
 
 private
