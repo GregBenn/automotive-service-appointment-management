@@ -1,3 +1,29 @@
 <h2>Schedule an Appointment</h2>
 
-<%= render partial: "form", locals: {appointment: @appointment} %>
+<div id="appointmentNewForm">
+  <%= render partial: "form", locals: {appointment: @appointment} %>
+</div>
+
+<div id="appointmentResult">
+  <p>Appointment scheduled for <span id="customerPhoneNumber"><%#= @appointment.scheduled_for %></p>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      event.preventDefault()
+
+      const values = $(this).serialize()
+      const customerId = window.location.href.split("/").slice(-5)[0]
+      const vehicleId = window.location.href.split("/").slice(-3)[0]
+      const posting = $.post(`/customers/${customerId}/vehicles/${vehicleId}/appointments`, values)
+
+      posting.done(function(data) {
+        $("#appointmentNewForm").hide()
+
+        // const appointment = data
+        // $("#appointmentScheduledFor").text(appointment["scheduled_for"])
+      })
+    })
+  })
+</script>

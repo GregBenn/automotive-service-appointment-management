@@ -1,3 +1,36 @@
- <h2>Edit <%= "#{@user.name}'s" %> User Profile</h2>
+ <h2>Edit <span id="editUserHeaderName"><%= @user.name %></span>'s User Profile</h2>
 
+<div id="editUserResult">
+  <p>
+  Name: <span id="editUserName"><%= @user.name %></span>
+  <br>
+  Email: <span id="editUserEmail"><%= @user.email %></span>
+  </p>
+</div>
+
+<div>
+
+<p>Edit info below</p>
 <%= render partial: "form", locals: {user: @user} %>
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      event.preventDefault()
+
+      const values = $(this).serialize()
+      const id = window.location.href.split("/").slice(-2)[0]
+      const posting = $.post(`/users/${id}`, values)
+
+      posting.done(function(data) {
+        const user = data
+        $("#editUserHeaderName").text(user["name"])
+        $("#editUserName").text(user["name"])
+        $("#editUserEmail").text(user["email"])
+      })
+    })
+  })
+</script>
+

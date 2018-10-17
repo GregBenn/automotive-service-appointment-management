@@ -1,10 +1,18 @@
 <h2><%= "#{@user.name}'s Home Page" %></h2>
 
-<%= link_to "Edit User Profile", edit_user_path(@user) %>
+<!-- <div id="editUserResult">
+  <h2 id="editUserName"></h2>
+  <p id="editUserEmail"></p>
+</div> -->
+
+<!-- <button>Edit User Profile</button> -->
+<!-- <br><br> -->
+<div><%= link_to "Edit User Profile", edit_user_path(@user) %></div>
+<!-- <br> -->
+
+<%#= render partial: "form", locals: {user: @user} %>
+
 <br>
-
-<!-- add a checkbox to conditionally show by which status is selected -->
-
 <%= form_for(@user) do |f| %>
   <%= f.select(:status, [["All", "all"], ["Open", "open"], ["Closed", "closed"], ["Pending", "pending"]], selected: @status_filter) %>
 <% end %>
@@ -56,3 +64,20 @@
   <!-- *click to edit appointment -->
 </ul>
 
+<script type="text/javascript" charset="utf-8">
+  // $(function () {
+  //   $('form').submit(function(event) {
+  //     event.preventDefault()
+
+  //     const values = $(this).serialize()
+  //     const id = window.location.href.split("/").slice(-1)[0]
+  //     const posting = $.post('/user/' + id, values)
+
+  //     posting.done(function(data) {
+  //       const post = data
+  //       $("#editUserName").text(post["name"])
+  //       $("#editUserEmail").text(post["email"])
+  //     })
+  //   })
+  // })
+</script>

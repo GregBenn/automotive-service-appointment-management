@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
-    redirect_to user_path(@user)
+    render json: @user, status: 201
   end
 
 private

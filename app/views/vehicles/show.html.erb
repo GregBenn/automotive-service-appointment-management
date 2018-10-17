@@ -1,8 +1,47 @@
+<h3>
+  <%=@vehicle.customer.name%>'s
+  <%#=@vehicle.vehicle_description%>
+  <span id="vehicleYear"><%=@vehicle.year%></span>
+  <span id="vehicleMake"><%=@vehicle.make%></span>
+  <span id="vehicleModel"><%=@vehicle.model%></span> -
+  <span id="vehicleMileage"><%=@vehicle.mileage%></span> miles
+</h3>
 
-
-<h3><%= "#{@vehicle.customer.name}'s " "#{@vehicle.vehicle_description}" " - #{@vehicle.mileage} miles"%></h3>
-
-<%= link_to "Edit Vehicle Info", edit_customer_vehicle_path(@vehicle) %>
+<button id="vehicleEditButton">Edit Vehicle Info</button>
 <br>
 
+
 <%= link_to "Schedule a Service Appointment", new_customer_vehicle_appointment_path(@customer, @vehicle, @appointment) %>
+<!-- should list appointment history -->
+<br><br>
+
+<div id="vehicleEditForm" style="display: none">
+  <%= render partial: "form", locals: {vehicle: @vehicle} %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $("#vehicleEditButton").on("click", function() {
+      event.preventDefault()
+      $("#vehicleEditForm").show()
+    })
+
+    $('form').submit(function(event) {
+      event.preventDefault()
+
+      const values = $(this).serialize()
+      const customerId = window.location.href.split("/").slice(-3)[0]
+      const vehicleId = window.location.href.split("/").slice(-1)[0]
+      const posting = $.post(`/customers/${customerId}/vehicles/${vehicleId}`, values)
+
+      posting.done(function(data) {
+        $("#vehicleEditForm").hide()
+        $("#vehicleYear").text(data["year"])
+        $("#vehicleMake").text(data["make"])
+        $("#vehicleModel").text(data["model"])
+        $("#vehicleMileage").text(data["mileage"])
+      })
+    })
+
+  })
+</script>
